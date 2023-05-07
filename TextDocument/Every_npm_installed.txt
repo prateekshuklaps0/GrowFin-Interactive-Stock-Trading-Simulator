@@ -6,7 +6,7 @@ Axios (For making HTTP requests to a server or API, you can use axios.) - npm in
 
 Json Server - npm install -g json-server
 
-\***\*\*\*\*\*\*\*** Styling UI \***\*\*\*\*\*\*\***
+********** Styling UI **********
 
 Chakra UI - npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
 
