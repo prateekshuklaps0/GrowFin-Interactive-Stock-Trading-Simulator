@@ -102,6 +102,15 @@ export const BtnCss = css`
   letter-spacing: 0.005em;
   color: #faff00;
 
+  :hover {
+    background: radial-gradient(
+      94.79% 100.26% at 50% 50%,
+      #1b6937 0%,
+      #002d10 100%
+    );
+    border: 0.5px solid #faff00;
+  }
+
   @media (max-width: 800px) {
     padding: 08px 17px 07px 16px;
     border-radius: 14px;

@@ -26,6 +26,7 @@ import {
 const OuterCont = css`
   width: 90%;
   margin: auto;
+
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -55,6 +56,7 @@ const ButtonCss = css`
   height: 22px;
   width: 65px;
   padding-bottom: 2px;
+  color: white;
 
   :hover {
     background: #000000;

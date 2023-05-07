@@ -39,12 +39,14 @@ function FaqPage() {
 
   return (
     <Box style={{}}>
-      {isAuth && <LogOut />}
-      <Middle />
-      <WhyUs />
-      <StayInTouch />
-      <FAQ />
-      <Footer />
+      {isAuth ? <LogOut /> : null}
+      <Box>
+        <Middle />
+        <WhyUs />
+        <StayInTouch />
+        <FAQ />
+        <Footer />
+      </Box>
     </Box>
   );
 }
