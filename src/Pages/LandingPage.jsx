@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { Box } from "@chakra-ui/react";
+import LogOut from "../Elements/LogOut";
 import NavBar from "../components/NavBar";
 import Header from "../components/Header";
 import Header2 from "../components/Header2";
@@ -53,6 +54,7 @@ function LandingPage() {
 
   return (
     <Box css={LandingPageCont}>
+      {isAuth && <LogOut />}
       <Header />
       <Header2 />
       <Content1 />

@@ -72,6 +72,11 @@ const BtnCss = css`
     font-weight: 600;
     color: #faff00;
     border: 0.516317px solid #faff00;
+    background: radial-gradient(
+      94.79% 100.26% at 50% 50%,
+      #1b6937 0%,
+      #002d10 100%
+    );
   }
 
   @media (max-width: 800px) {
