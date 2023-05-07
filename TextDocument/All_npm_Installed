@@ -1,0 +1,19 @@
+Created React App - npx create-react-app my-app
+
+React Router Dom (For client-side routing in a single-page application, you can use react-router-dom) - npm install react-router-dom
+
+Axios (For making HTTP requests to a server or API, you can use axios.) - npm install axios
+
+Json Server - npm install -g json-server
+
+\***\*\*\*\*\*\*\*** Styling UI \***\*\*\*\*\*\*\***
+
+Chakra UI - npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+
+Emotion for Style - npm i @emotion/css
+
+Framer Motion - npm install framer-motion
+
+Chakra UI Icons - npm i @chakra-ui/icons
+
+React-Icons - npm install react-icons --save / npm install @react-icons/all-files --save
