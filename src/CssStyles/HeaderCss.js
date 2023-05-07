@@ -11,33 +11,10 @@ export const OuterCont = css`
   @media (max-width: 480px) {
   }
 `;
-
-export const OvalBox = css`
-  position: absolute;
-  width: 1440px;
-  height: 1698.02px;
-  top: 5.02px;
-  background: linear-gradient(
-    180.59deg,
-    rgba(0, 255, 10, 0.5) -10.32%,
-    rgba(5, 5, 5, 0.5) 23.18%
-  );
-  filter: blur(75px);
-  backdrop-filter: blur(2.5px);
-  transform: rotate(-180deg);
-  border-radius: 50%;
-
-  @media (max-width: 900px) {
-  }
-  @media (max-width: 800px) {
-  }
-  @media (max-width: 480px) {
-  }
-`;
-
 export const Logo = css`
   width: 149px;
   height: 171.56px;
+  margin: auto;
   margin-top: 69px;
 
   @media (max-width: 900px) {
@@ -56,7 +33,6 @@ export const Logo = css`
     margin-top: 15px;
   }
 `;
-
 export const Heading = css`
   min-width: 607px;
   font-family: "K2D";
@@ -78,32 +54,31 @@ export const Heading = css`
     margin-top: -10px;
   }
 `;
-
 export const Heading2 = css`
   color: #ffffff;
   font-family: "K2D";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
-  margin-top: -47px;
+  margin-top: 16px;
   line-height: 47px;
 
   @media (max-width: 800px) {
     font-size: 28px;
-    margin-top: -40px;
+    margin-top: -5px;
   }
   @media (max-width: 480px) {
     font-size: 23px;
-    margin-top: -45px;
+    margin-top: -10px;
   }
 `;
-
 export const TextCont = css`
   width: 1057px;
   height: 72px;
   margin: auto;
+  margin-top: 16px;
 
-  @media (max-width: 1070px) {
+  marg @media (max-width: 1070px) {
     width: 700px;
     height: auto;
   }
@@ -114,6 +89,7 @@ export const TextCont = css`
   @media (max-width: 480px) {
     width: 300px;
     height: auto;
+    margin-top: 5px;
   }
 `;
 export const Texting = css`
@@ -123,7 +99,6 @@ export const Texting = css`
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
-  margin-top: -15px;
   text-align: center;
 
   @media (max-width: 1070px) {
@@ -137,7 +112,6 @@ export const Texting = css`
     margin-top: 0px;
   }
 `;
-
 // HeadInput Box Css
 export const InputOuterCont = css`
   box-sizing: border-box;
@@ -145,29 +119,32 @@ export const InputOuterCont = css`
   border: 1px solid #00a407;
   border-radius: 24px;
   width: 91%;
-  height: 187px;
+  height: auto;
   margin: auto;
   margin-top: 100px;
   padding-top: 12px;
+  padding-bottom: 46px;
 
   @media (max-width: 1050px) {
     width: 75%;
-    margin-top: 80px;
+    margin-top: 60px;
     height: auto;
+    padding-top: 2px;
+    padding-bottom: 36px;
   }
   @media (max-width: 480px) {
     width: 75%;
-    margin-top: 60px;
+    margin-top: 30px;
     height: auto;
+    padding-top: -15px;
+    padding-bottom: 26px;
   }
 `;
-
 export const InputCont = css`
   width: 80%;
   display: flex;
   justify-content: space-between;
   margin: auto;
-  height: 123px;
 
   @media (max-width: 1050px) {
     height: auto;
@@ -175,14 +152,13 @@ export const InputCont = css`
   }
   @media (max-width: 480px) {
     height: auto;
+    margin-top: -15px;
   }
 `;
 
 export const Cards = css`
   text-align: center;
-  margin-bottom: 46px;
 `;
-
 export const CardText = css`
   height: 29px;
   font-family: "Inter";
@@ -191,6 +167,7 @@ export const CardText = css`
   font-size: 24px;
   line-height: 29px;
   color: #ffffff;
+  margin-top: 32px;
 
   @media (max-width: 480px) {
     font-size: 16px;
@@ -214,6 +191,11 @@ export const InputCss = css`
   line-height: 19px;
   color: #ffffff;
   opacity: 0.7;
+  margin-top: 32px;
+
+  :focus {
+    border: 0.5px solid #faff00;
+  }
 
   @media (max-width: 480px) {
     font-size: 14px;

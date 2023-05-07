@@ -200,7 +200,7 @@ export const InActiveText = css`
   font-weight: 400;
   width: 258px;
   margin: auto;
-  font-size: 15.4569px;
+  font-size: 18.4569px;
   line-height: 17px;
   text-align: center;
   color: #ffffff;

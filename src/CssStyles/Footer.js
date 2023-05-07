@@ -4,7 +4,7 @@ export const Outer = css`
   color: white;
   width: 80%;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 60px;
   margin-bottom: 140px;
 
   @media (max-width: 800px) {
@@ -36,6 +36,7 @@ export const UpperLeft = css`
   justify-content: space-between;
 
   @media (max-width: 800px) {
+    margin-top: 10px;
   }
   @media (max-width: 480px) {
     margin-top: 5px;
@@ -94,7 +95,7 @@ export const Divider = css`
 `;
 export const LowerCont = css`
   margin-bottom: 0;
-  margin-top: -5px;
+  margin-top: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -102,7 +103,7 @@ export const LowerCont = css`
   @media (max-width: 800px) {
   }
   @media (max-width: 480px) {
-    margin-top: 0px;
+    margin-top: 10px;
   }
 `;
 export const LowerLeft = css`

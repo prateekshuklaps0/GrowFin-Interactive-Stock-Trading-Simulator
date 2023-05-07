@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { Box } from "@chakra-ui/react";
+import { Box, useToast } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import AllRoutes from "./Routes/Routes";
 

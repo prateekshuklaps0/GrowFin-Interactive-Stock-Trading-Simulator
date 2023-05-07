@@ -6,20 +6,6 @@
       "lastName": "admin",
       "email": "a@a",
       "mobile": 123
-    },
-    {
-      "firstName": "amit",
-      "lastName": "kumar",
-      "email": "amit@ada",
-      "mobile": "987",
-      "id": 2
-    },
-    {
-      "firstName": "neha",
-      "lastName": "kumari",
-      "email": "neha@k",
-      "mobile": "963",
-      "id": 3
     }
   ]
 }

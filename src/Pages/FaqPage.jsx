@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { Box } from "@chakra-ui/react";
+import LogOut from "../Elements/LogOut";
 import Middle from "../components/Middle";
 import WhyUs from "../components/WhyUs";
 import FAQ from "../components/FAQ";
@@ -38,6 +39,7 @@ function FaqPage() {
 
   return (
     <Box style={{}}>
+      {isAuth && <LogOut />}
       <Middle />
       <WhyUs />
       <StayInTouch />

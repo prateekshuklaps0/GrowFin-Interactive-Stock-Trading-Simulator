@@ -186,6 +186,7 @@ export const SideCards = css`
 export const SideImg = css`
   width: 100px;
   height: 100px;
+  margin: auto;
   margin-top: 24px;
 
   @media (max-width: 800px) {
@@ -267,6 +268,7 @@ export const MiddleImg = css`
   width: 125px;
   height: 125px;
   border: 1px solid #00ff0a;
+  margin: auto;
   border-radius: 16px;
   margin-top: 35px;
 

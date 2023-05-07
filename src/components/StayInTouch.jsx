@@ -3,7 +3,7 @@ import { Box, Image, Text, Input, Center, Button } from "@chakra-ui/react";
 
 export const OuterCont = css`
   margin-bottom: 0;
-  margin-top: 130px;
+  margin-top: 120px;
 
   @media (max-width: 800px) {
     margin-top: 100px;
@@ -65,8 +65,14 @@ export const InpCss = css`
   line-height: 33px;
   letter-spacing: 0.005em;
   color: #000000;
-  border: 0;
-  outline: 0;
+  border: none;
+  outline: none;
+
+  :focus {
+    outline: none;
+    border: none;
+    border: 1px solid white;
+  }
 
   @media (max-width: 800px) {
     height: 20px;
@@ -82,11 +88,10 @@ export const BtnCss = css`
   cursor: pointer;
   padding: 14px 47px 13px 46px;
   background: radial-gradient(
-      94.79% 100.26% at 50% 50%,
-      #1b6937 0%,
-      #002d10 100%
-    )
-    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    94.79% 100.26% at 50% 50%,
+    #1b6937 0%,
+    #002d10 100%
+  );
   border: 0.5px solid #00ff0a;
   border-radius: 20px;
   font-family: "Inter";
@@ -103,8 +108,9 @@ export const BtnCss = css`
     font-size: 14px;
   }
   @media (max-width: 480px) {
-    padding: 04px 8.5px 3.5px 8px;
+    padding: 4px 15.5px 4px 15px;
     border-radius: 10px;
+    height: 30px;
     font-size: 12px;
   }
 `;
