@@ -30,11 +30,11 @@ export const NavOuterCont = css`
     height: 70px;
   }
 `;
-
 // Logo
 export const NavLogoCont = css`
   width: 81.58px;
   height: 93.88px;
+  text-align: center;
   top: 56px;
   cursor: pointer;
 
@@ -54,6 +54,7 @@ export const NavLogoCont = css`
 export const LogoImage = css`
   width: 100%;
   height: 100%;
+  margin: auto;
 `;
 
 // Right Items
@@ -84,6 +85,7 @@ export const ActiveLink = css`
   font-weight: 500;
   font-size: 16.5222px;
   line-height: 20px;
+  margin-top: 15px;
   cursor: pointer;
   z-index: 50;
 `;
@@ -91,6 +93,7 @@ export const InActiveLink = css`
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
+  margin-top: 15px;
   font-size: 16.5222px;
   line-height: 20px;
   color: #ffffff;
@@ -117,9 +120,6 @@ export const MenuOuterCont = css`
     display: initial;
   }
 `;
-// color: #ffffff;
-// #00be0d; 92b700
-// color: linear-gradient(180deg, #00be0d 0%, #92b700 100%);
 export const MenuIcon = css`
   color: #00be0d;
   border: 1px solid #92b700;
@@ -138,22 +138,14 @@ export const MenuIcon = css`
     height: 40px;
   }
 `;
-
 export const CloseBtn = css`
   color: #00be0d;
-  //border: 1px solid #92b700;
-  border-radius: 10px;
-  padding-left: 7px;
-  padding-right: 7px;
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
   @media (max-width: 480px) {
-    width: 35px;
-    height: 35px;
   }
 `;
-
 export const DrawerCss = css`
   background: linear-gradient(
     0deg,
@@ -161,11 +153,15 @@ export const DrawerCss = css`
     rgb(1, 42, 60) 100%
   );
   overflow-y: scroll;
-  padding: 30px;
-  width: 200px;
-`;
+  display: none;
 
-export const ContentCont = css``;
+  @media (max-width: 800px) {
+    display: initial;
+  }
+`;
+export const ContentCont = css`
+  margin-top: -30px;
+`;
 
 export const DrawerSlide = css``;
 
@@ -174,7 +170,7 @@ export const LinkHolder = css`
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 39px;
 `;
 
 export const LogOutBtn = css`
@@ -184,8 +180,6 @@ export const LogOutBtn = css`
   font-size: 16px;
   padding: 10px 25px 10px 25px;
   border-radius: 14px;
-  //background: radial-gradient(50% 50% at 50% 50%, #02ae09 0%, #000000 100%);
-
   background: transparent;
   border: 0.516317px solid yellow;
 

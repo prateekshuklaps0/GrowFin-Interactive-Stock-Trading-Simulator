@@ -9,6 +9,10 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
   useToast,
   HStack,
   PinInput,
@@ -20,41 +24,26 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 
+// OTP Generator
+function generateOTP() {
+  const digits = "0123456789";
+  let OTP = "";
+  for (let i = 0; i < 4; i++) {
+    OTP += digits[Math.floor(Math.random() * 10)];
+  }
+  return OTP;
+}
+
 const init = {
   mobile: "",
   otp: "",
   showOTP: false,
   loading: false,
   error: false,
-  showNotFoundToast: false,
 };
 
 const updater = (state, { type, payload }) => {
   switch (type) {
-    // Mobile InPut Change
-    case "MobileInpChange": {
-      if (payload.length > 10) {
-        return {
-          ...state,
-          mobile: state.mobile,
-          showNotFoundToast: false,
-          otp: "",
-          showOTP: false,
-          loading: false,
-          error: false,
-        };
-      } else {
-        return {
-          ...state,
-          mobile: payload,
-          showNotFoundToast: false,
-          otp: "",
-          showOTP: false,
-          loading: false,
-          error: false,
-        };
-      }
-    }
     // Mount Phase
     case "MountPhaseAction": {
       return {
@@ -65,6 +54,28 @@ const updater = (state, { type, payload }) => {
         error: false,
       };
     }
+    // Mobile InPut Change
+    case "MobileInpChange": {
+      if (payload.length > 10) {
+        return {
+          ...state,
+          mobile: state.mobile,
+          otp: "",
+          showOTP: false,
+          loading: false,
+          error: false,
+        };
+      } else {
+        return {
+          ...state,
+          mobile: payload,
+          otp: "",
+          showOTP: false,
+          loading: false,
+          error: false,
+        };
+      }
+    }
     // Loading State of geting the data
     case "LoadingUserSearch": {
       return {
@@ -73,9 +84,6 @@ const updater = (state, { type, payload }) => {
         error: false,
         otp: "",
         showOTP: false,
-        loading: false,
-        error: false,
-        showNotFoundToast: false,
       };
     }
     // User Not Found After Entering Mobile Number
@@ -86,9 +94,54 @@ const updater = (state, { type, payload }) => {
         showOTP: false,
         loading: false,
         error: false,
-        showNotFoundToast: true,
       };
     }
+    // Success Request And User Found
+    case "SuccessRequestAndUserFounded": {
+      return {
+        ...state,
+        otp: "",
+        showOTP: true,
+        loading: false,
+        error: false,
+      };
+    }
+    // SomeThing Went Wrong
+    case "SomeThingWentWrong": {
+      return {
+        ...state,
+        mobile: "",
+        otp: "",
+        showOTP: false,
+        loading: false,
+        error: true,
+      };
+    }
+    // User is typing OTP
+    case "OTPinput": {
+      return {
+        ...state,
+        otp: payload,
+      };
+    }
+    // OTP Matched
+    case "OPTMatched": {
+      return {
+        ...state,
+        ...init,
+      };
+    }
+    // Change Mobile Number
+    case "ChangeMobileNumber": {
+      return {
+        ...state,
+        otp: "",
+        showOTP: false,
+        loading: false,
+        error: false,
+      };
+    }
+
     default: {
       return init;
     }
@@ -99,6 +152,7 @@ function LogIn({ userName, setUserName, URL, setAuth, setUserFound }) {
   const toast = useToast();
   const [state, action] = useReducer(updater, init);
   const { mobile, otp, showOTP, loading, error, showNotFoundToast } = state;
+  const [generatedOTP, setGeneratedOTP] = useState(0);
 
   useEffect(() => {
     setUserName((prev) => "");
@@ -106,18 +160,8 @@ function LogIn({ userName, setUserName, URL, setAuth, setUserFound }) {
     setUserFound((prev) => {
       return {};
     });
-    toast({
-      position: "bottom-left",
-      render: () => (
-        <Box color="white" p={3} bg="blue.500">
-          Hello World
-        </Box>
-      ),
-    });
     action({ type: "MountPhaseAction" });
   }, []);
-
-  // Manage Toasts
 
   const handleInpChange = (e) => {
     action({ type: "MobileInpChange", payload: e.target.value });
@@ -129,23 +173,58 @@ function LogIn({ userName, setUserName, URL, setAuth, setUserFound }) {
     axios({ url: URL, method: "get" })
       .then((res) => {
         var found = res.data.filter(
-          (item, ind) => Number(item.mobile) == Number(mobile)
+          (item, ind) => Number(item.mobile) === Number(mobile)
         );
+
         if (found.length == 0) {
           // User Not Found
+          toast({
+            title: "User Not Found",
+            description: "Please Check Your Number",
+            status: "error",
+            isClosable: true,
+          });
           action({ type: "UserNotFound" });
         } else {
           // User Found
-          var DataOfUserFound = res.data[0];
+          var DataOfUserFound = found[0];
           setUserFound((prev) => DataOfUserFound);
           setUserName((prev) => DataOfUserFound.firstName);
+
+          var OTPRendered = generateOTP();
+          setGeneratedOTP((prev) => OTPRendered);
+          toast({
+            title: `OTP Sent to your Mobile`,
+            status: "success",
+
+            isClosable: true,
+          });
+
+          toast({
+            title: `OTP Recieved : ${OTPRendered}`,
+            position: "top",
+            variant: "top-accent",
+            status: "info",
+            isClosable: false,
+          });
+
           action({
             type: "SuccessRequestAndUserFounded",
             payload: DataOfUserFound,
           });
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast({
+          title: `Something Went Wrong`,
+          description: "Please Try Again",
+          status: "error",
+          isClosable: true,
+        });
+
+        action({ type: "SomeThingWentWrong" });
+      });
   }
 
   const handleContinue = () => {
@@ -156,38 +235,59 @@ function LogIn({ userName, setUserName, URL, setAuth, setUserFound }) {
     var value = val.replace(/\D/g, "");
 
     if (value.length <= 4) {
-      //   setOtp((prev) => value);
+      action({ type: "OTPinput", payload: value });
     }
   };
-  const handleSubmit = () => {};
+
+  const handleSubmit = () => {
+    if (otp == generatedOTP) {
+      toast({
+        title: `Logged In Successful`,
+        status: "success",
+        position: "top",
+        isClosable: false,
+      });
+      setAuth((prev) => true);
+      action({ type: "OPTMatched" });
+    } else {
+      toast({
+        title: `OTP Incorrect`,
+        status: "error",
+        isClosable: true,
+      });
+    }
+  };
+
+  const handleChangeMobile = () => {
+    action({ type: "ChangeMobileNumber" });
+  };
+
+  const handleResendOTP = () => {
+    toast({
+      title: `OTP Recieved : ${generatedOTP}`,
+      position: "top",
+      variant: "top-accent",
+      status: "info",
+      isClosable: false,
+    });
+  };
 
   return (
     <Box css={css.OuterCont}>
-      {userName ? (
-        <Text css={css.HelloText}>
-          <Highlight query="Hello" styles={{ color: "#ffffff" }}>
-            Hello
-          </Highlight>{" "}
-          {userName}{" "}
-          <Highlight query="!" styles={{ color: "#ffffff" }}>
-            !
-          </Highlight>
-        </Text>
-      ) : (
-        <Box css={css.WelcomeCont}>
-          <Text css={css.WelcomeText}>Welcome</Text>
-          <Text css={css.LogInText}>
-            <Highlight query="Grow Fin" styles={{ color: "#FAFF00" }}>
-              Please Log In with Your Grow Fin Account
+      {showOTP ? (
+        <Box css={css.OTPboxCont}>
+          <Text css={css.HelloText}>
+            <Highlight query="Hello" styles={{ color: "#ffffff" }}>
+              Hello
+            </Highlight>{" "}
+            {userName}{" "}
+            <Highlight query="Hello" styles={{ color: "#ffffff" }}>
+              !
             </Highlight>
           </Text>
-        </Box>
-      )}
-
-      <Box css={css.InputCont}>
-        {showOTP && <Text css={css.ChangeText}>← Change Mobile Number</Text>}
-
-        {showOTP ? (
+          <Text onClick={handleChangeMobile} css={css.ChangeText}>
+            ← Change Mobile Number
+          </Text>
           <Box css={css.InputPinCont}>
             <PinInput
               css={css.PinInputCss}
@@ -203,35 +303,48 @@ function LogIn({ userName, setUserName, URL, setAuth, setUserFound }) {
               <PinInputField css={css.OtpInp} />
             </PinInput>
           </Box>
-        ) : (
+          <Text onClick={handleResendOTP} css={css.ResendCont}>
+            ↻ Resend OTP
+          </Text>
+          <Button onClick={handleSubmit} css={css.ContinueBtnBox}>
+            Submit
+          </Button>
+        </Box>
+      ) : (
+        <Box css={css.LogInBoxCont}>
+          <Text css={css.WelcomeText}>Welcome</Text>
+          <Text css={css.Instruction}>
+            <Highlight query="Grow Fin" styles={{ color: "#FAFF00" }}>
+              Please Log In with your Grow Fin Account
+            </Highlight>
+          </Text>
           <InputGroup>
-            <InputLeftAddon marginRight="5px" children="+91" />
+            <InputLeftAddon css={css.InputAddon} children="+91" />
             <Input
-              css={css.MobileInp}
-              onChange={(e) => handleInpChange(e)}
               value={mobile}
-              type="number"
-              placeholder="Enter Mobile No."
+              onChange={(e) => handleInpChange(e)}
+              css={css.MobileInp}
+              type="tel"
+              placeholder="Enter Mobile Number"
             />
           </InputGroup>
-        )}
-
-        {showOTP && <Box css={css.ResendCont}>↻ Resend OTP</Box>}
-
-        {!showOTP ? (
-          <Center css={css.ContinueBtnBox} onClick={handleContinue}>
+          <Button onClick={handleContinue} css={css.ContinueBtnBox}>
             {loading ? (
-              <Spinner css={css.SpinnerCss} thickness="2px" speed="0.65s" />
+              <Spinner
+                thickness="2px"
+                speed="0.65s"
+                emptyColor="blue.200"
+                color="#FAFF00"
+                marginTop="4px"
+                width="24px"
+                height="24px"
+              />
             ) : (
-              <Text css={css.ContinueText}>Continue</Text>
+              "Continue"
             )}
-          </Center>
-        ) : (
-          <Center css={css.ContinueBtnBox} onClick={handleSubmit}>
-            <Text css={css.SubmitText}>Submit</Text>
-          </Center>
-        )}
-      </Box>
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 }

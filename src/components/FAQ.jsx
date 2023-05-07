@@ -7,7 +7,7 @@ export const OuterCont = css`
   justify-content: space-between;
   margin: auto;
   margin-bottom: 0;
-  margin-top: 50px;
+  margin-top: 100px;
 
   @media (max-width: 950px) {
     width: 90%;
@@ -15,7 +15,7 @@ export const OuterCont = css`
   }
   @media (max-width: 480px) {
     width: 90%;
-    margin-top: 5px;
+    margin-top: 20px;
     flex-direction: column;
     gap: 20px;
   }
@@ -39,7 +39,7 @@ export const HeadCss = css`
 
   @media (max-width: 951px) {
     font-size: 20px;
-    margin-bottom: -15px;
+    margin-bottom: -5px;
   }
   @media (max-width: 480px) {
     color: #02ae09;
@@ -52,12 +52,12 @@ export const TextCss = css`
   font-size: 20px;
   line-height: 32px;
   text-align: center;
-  margin-bottom: -20px;
+  margin-bottom: 0px;
   color: #ffffff;
 
   @media (max-width: 951px) {
     font-size: 13px;
-    margin-bottom: -25px;
+    margin-bottom: -10px;
   }
   @media (max-width: 480px) {
   }

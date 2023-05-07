@@ -29,9 +29,6 @@ function HeadInput() {
 function Header() {
   return (
     <Box css={css.OuterCont}>
-      {/* Oval Box */}
-      {/* <Box css={css.OvalBox}>dghg</Box> */}
-
       <Image css={css.Logo} src={Logo} alt="HeaderLogo" />
       <Text css={css.Heading}>Welcome to Grow Fin</Text>
       <Text css={css.Heading2}>“Your money our expertise”</Text>

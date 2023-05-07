@@ -13,27 +13,27 @@ import {
   Drawer,
   Button,
   DrawerBody,
+  Center,
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
 } from "@chakra-ui/react";
-
 import { HamburgerIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import { motion } from "framer-motion";
 
 function NavLogo() {
   const Navig = useNavigate();
   return (
-    <Box css={css.NavLogoCont}>
+    <Center css={css.NavLogoCont}>
       <Image
         onClick={() => Navig("/")}
         css={css.LogoImage}
         src={NavBarLogo}
         alt="NavBarLogo"
       />
-    </Box>
+    </Center>
   );
 }
 
@@ -104,7 +104,7 @@ function NavRightItems({ highlight, sliderVal, setSliderVal }) {
           transition={{ type: "linear" }}
         ></motion.div>
       </Box>
-      <Box css={css.TextHolder}>
+      <Center css={css.TextHolder}>
         {links.map((link, index) => (
           <Text
             key={link.text}
@@ -116,7 +116,7 @@ function NavRightItems({ highlight, sliderVal, setSliderVal }) {
             {link.text}
           </Text>
         ))}
-      </Box>
+      </Center>
     </Box>
   );
 }

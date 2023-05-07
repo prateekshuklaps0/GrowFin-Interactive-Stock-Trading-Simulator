@@ -8,22 +8,10 @@ export const OuterCont = css`
   @media (max-width: 480px) {
   }
 `;
-export const WelcomeCont = css`
-  @media (max-width: 800px) {
-  }
 
-  @media (max-width: 480px) {
-  }
-`;
-export const HelloText = css`
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 29px;
-  margin-top: -35px;
-  color: #faff00;
-
+// Log Box Css
+export const LogInBoxCont = css`
+  width: 300px;
   @media (max-width: 800px) {
   }
 
@@ -36,7 +24,6 @@ export const WelcomeText = css`
   font-weight: 500;
   font-size: 38px;
   line-height: 29px;
-  margin-top: -20px;
 
   @media (max-width: 800px) {
   }
@@ -44,13 +31,15 @@ export const WelcomeText = css`
   @media (max-width: 480px) {
   }
 `;
-export const LogInText = css`
-  font-family: "Inter";
+export const Instruction = css`
+  font-family: "K2D";
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15.5px;
   line-height: 29px;
-  margin-top: -10px;
+  color: #ffffff;
+  margin-top: 14px;
+  margin-bottom: 20px;
 
   @media (max-width: 800px) {
   }
@@ -58,11 +47,15 @@ export const LogInText = css`
   @media (max-width: 480px) {
   }
 `;
-
-export const InputCont = css`
-  text-align: center;
-  width: 240px;
-  margin: auto;
+export const HelloText = css`
+  font-family: "K2D";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #faff00;
+  margin-top: 14px;
+  margin-bottom: 20px;
 
   @media (max-width: 800px) {
   }
@@ -70,20 +63,80 @@ export const InputCont = css`
   @media (max-width: 480px) {
   }
 `;
-export const MobileInp = css`
+export const InputAddon = css`
   background: #000000;
-  border: 0.5px solid #00ff0a;
-  border-radius: 8px;
+  color: white;
+  border-radius-top: 8px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  width: 100%;
+  border: 0.1px solid #00ff0a;
+  line-height: 19px;
+  text-align: center;
+  opacity: 0.7;
+`;
+export const MobileInp = css`
+  background: #000000;
+  border: 0.5px solid #00ff0a;
+  border-radius-top-left: 8px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
   line-height: 19px;
   text-align: center;
   padding: 12px 0px 12px 0px;
   color: #ffffff;
   opacity: 0.7;
+
+  :focus {
+    outline: none;
+    border: none;
+    border: 0.5px solid #faff00;
+  }
+
+  @media (max-width: 800px) {
+  }
+
+  @media (max-width: 480px) {
+  }
+`;
+export const ContinueBtnBox = css`
+  width: 130px;
+  background: radial-gradient(
+    94.79% 100.26% at 50% 50%,
+    #1b6937 0%,
+    #002d10 100%
+  );
+  border: 0.1px solid #00ff0a;
+  border-radius: 33.0443px;
+  height: 40px;
+  margin: auto;
+  margin-top: 15px;
+  cursor: pointer;
+  padding-bottom: 4px;
+
+  :hover {
+    //color: #faff00;
+    background: radial-gradient(
+      94.79% 100.26% at 50% 50%,
+      #1b6937 0%,
+      #002d10 100%
+    );
+    border: 0.1px solid #faff00;
+  }
+
+  @media (max-width: 800px) {
+  }
+
+  @media (max-width: 480px) {
+  }
+`;
+
+// OTP Css ****************************
+export const OTPboxCont = css`
+  width: 300px;
 
   @media (max-width: 800px) {
   }
@@ -92,12 +145,14 @@ export const MobileInp = css`
   }
 `;
 export const InputPinCont = css`
-  width: 100%;
+  width: 60%;
   margin: auto;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 9px;
+  margin-bottom: 4px;
 
   @media (max-width: 800px) {
   }
@@ -136,17 +191,6 @@ export const OtpInp = css`
   @media (max-width: 480px) {
   }
 `;
-export const ChangeResetCont = css`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-
-  @media (max-width: 800px) {
-  }
-
-  @media (max-width: 480px) {
-  }
-`;
 export const ChangeText = css`
   display: flex;
   font-size: 14px;
@@ -163,14 +207,12 @@ export const ChangeText = css`
   @media (max-width: 480px) {
   }
 `;
-
 export const ResendCont = css`
   width: 100%;
   display: flex;
   flex-direction: row-reverse;
   font-size: 14px;
   cursor: pointer;
-  margin-top: 12px;
 
   :hover {
     color: #faff00;
@@ -182,32 +224,7 @@ export const ResendCont = css`
   @media (max-width: 480px) {
   }
 `;
-export const ContinueBtnBox = css`
-  width: 130px;
 
-  background: radial-gradient(
-    94.79% 100.26% at 50% 50%,
-    #1b6937 0%,
-    #002d10 100%
-  );
-  border: 0.1px solid #00ff0a;
-  border-radius: 33.0443px;
-  height: 40px;
-  margin: auto;
-  margin-top: 20px;
-  cursor: pointer;
-
-  :hover {
-    //color: #faff00;
-    border: 0.1px solid #faff00;
-  }
-
-  @media (max-width: 800px) {
-  }
-
-  @media (max-width: 480px) {
-  }
-`;
 export const AntDesignSpinner = css`
   color: red;
 `;

@@ -100,7 +100,6 @@ const ActiveIcon = {
   margin: "auto",
   fontSize: "35px",
 };
-
 const InActiveIcon = {
   border: "1px solid transparent",
   color: "#FFFFFF",
@@ -151,7 +150,7 @@ function LogSign() {
       </Box>
 
       {showSignUp ? (
-        <SignUp URL={URL} />
+        <SignUp setShowSignUp={setShowSignUp} URL={URL} />
       ) : (
         <LogIn
           userName={userName}

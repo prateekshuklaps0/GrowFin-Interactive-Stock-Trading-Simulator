@@ -17,25 +17,23 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 
-function SignUp({ URL }) {
+function SignUp({ URL, setShowSignUp }) {
+  const toast = useToast();
   const [first, setFirst] = useState("");
   const [last, setLast] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [exist, setExist] = useState(false);
+  const [exist, setExist] = useState(true);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (!exist) {
+      PostData();
+    }
+  }, [exist]);
 
-    var obj = {
-      firstName: first,
-      lastName: last,
-      email: email,
-      mobile: mobile,
-    };
-
+  function PostData() {
     setLoading((prev) => true);
     setError((prev) => false);
 
@@ -50,19 +48,74 @@ function SignUp({ URL }) {
       },
     })
       .then((res) => {
-        // console.log(res);
         setLoading((prev) => false);
+        toast({
+          title: `Congratulations !`,
+          description: "Account Created Successfully",
+          position: "top",
+          status: "success",
+          isClosable: true,
+        });
+
+        setShowSignUp((prev) => false);
+        setFirst((prev) => "");
+        setLast((prev) => "");
+        setEmail((prev) => "");
+        setMobile((prev) => "");
       })
       .catch((err) => {
         console.log(err);
+        toast({
+          title: `Something Went Wrong`,
+          description: "Please Try Again",
+          status: "error",
+          isClosable: true,
+        });
         setLoading((prev) => false);
         setError((prev) => true);
       });
+  }
 
-    setFirst((prev) => "");
-    setLast((prev) => "");
-    setEmail((prev) => "");
-    setMobile((prev) => "");
+  function CheckIfUserExists() {
+    setLoading((prev) => true);
+    setError((prev) => false);
+
+    axios({
+      url: URL,
+      method: "get",
+    })
+      .then((res) => {
+        var foundUsers = res.data.filter(
+          (item, ind) => Number(item.mobile) === Number(mobile)
+        );
+        if (foundUsers.length == 0) {
+          setExist((prev) => false);
+        } else {
+          toast({
+            title: `This Mobile Number is Already Registered`,
+            status: "warning",
+            isClosable: true,
+          });
+          setExist((prev) => true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          title: `Something Went Wrong`,
+          description: "Please Try Again",
+          status: "error",
+          isClosable: true,
+        });
+        setLoading((prev) => false);
+        setError((prev) => true);
+      });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    CheckIfUserExists();
   };
 
   return (
@@ -101,25 +154,29 @@ function SignUp({ URL }) {
             placeholder="Enter Email"
             required
           />
+
           <InputGroup>
-            <InputLeftAddon marginRight={"5px"} children="+91" />
+            <InputLeftAddon css={css.InputAddon} children="+91" />
             <Input
-              css={css.Inputs}
+              css={css.MobileInp}
+              type="tel"
               onChange={(e) => setMobile((prev) => e.target.value)}
               value={mobile}
-              type="number"
-              placeholder="Enter Mobile No."
+              placeholder="Enter Mobile Number"
               required
             />
           </InputGroup>
 
-          <Button css={css.SubmitBtn} type="submit">
+          <Button type="submit" css={css.ContinueBtnBox}>
             {loading ? (
               <Spinner
-                css={css.SignUpSpinner}
                 thickness="2px"
                 speed="0.65s"
-                size="xl"
+                emptyColor="blue.200"
+                color="#FAFF00"
+                marginTop="4px"
+                width="24px"
+                height="24px"
               />
             ) : (
               "Submit"
