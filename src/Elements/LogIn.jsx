@@ -2,7 +2,6 @@ import * as css from "../CssStyles/LogSignCss";
 import { AuthContext } from "../Context/AuthContext";
 import { useState, useEffect, useContext, useReducer } from "react";
 import axios from "axios";
-import { Spin } from "antd";
 import {
   Box,
   Image,
