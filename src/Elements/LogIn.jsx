@@ -170,7 +170,7 @@ function LogIn({ userName, setUserName, URL, setAuth, setUserFound }) {
   // Function to Check If User Mobile Number exists in backend or not
   function IfUserFound() {
     action({ type: "LoadingUserSearch" });
-    axios({ url: URL, method: "get" })
+    axios({ url: `${URL}/users`, method: "get" })
       .then((res) => {
         var found = res.data.filter(
           (item, ind) => Number(item.mobile) === Number(mobile)

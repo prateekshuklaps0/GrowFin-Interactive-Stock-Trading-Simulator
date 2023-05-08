@@ -24,7 +24,7 @@ import {
 } from "@chakra-ui/react";
 
 const OuterCont = css`
-  width: 90%;
+  width: 87%;
   margin: auto;
 
   display: flex;
@@ -51,7 +51,7 @@ const HiText = css`
 const ButtonCss = css`
   background: #000000;
   border: 0.5px solid #00ff0a;
-  border-radius: 8px;
+  border-radius: 5px;
   font-size: 13px;
   height: 22px;
   width: 65px;

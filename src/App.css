@@ -4,5 +4,8 @@
 }
 acd{
   cursor: pointer;
+  border-top-left-radius: 5;
  align-items: center;
+ 
+ color:rgba(255, 0, 0, 0.999)
 }
