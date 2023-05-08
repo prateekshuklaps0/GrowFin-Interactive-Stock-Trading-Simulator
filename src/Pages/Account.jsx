@@ -1,7 +1,29 @@
 import { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
-import { Box, Text } from "@chakra-ui/react";
+import axios from "axios";
+import {
+  Box,
+  Image,
+  Text,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  useToast,
+  HStack,
+  PinInput,
+  PinInputField,
+  Center,
+  Spinner,
+  Highlight,
+  Button,
+  ButtonGroup,
+} from "@chakra-ui/react";
 import LogOut from "../Elements/LogOut";
+import AccountDetail from "../components2/AccountDetail";
 import FAQ from "../components/FAQ";
 import Footer from "../components/Footer";
 import LogSign from "../components2/LogSign";
@@ -42,7 +64,7 @@ function Account() {
       ) : (
         <Box>
           <LogOut />
-          <Text>This is Account</Text>
+          <AccountDetail userData={userFound} setUserData={setUserFound} />
         </Box>
       )}
       <FAQ />

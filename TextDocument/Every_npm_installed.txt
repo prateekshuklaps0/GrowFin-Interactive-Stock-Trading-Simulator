@@ -16,4 +16,6 @@ Framer Motion - npm install framer-motion
 
 Chakra UI Icons - npm i @chakra-ui/icons
 
+Ant-Design -  npm install antd
+
 React-Icons - npm install react-icons --save / npm install @react-icons/all-files --save

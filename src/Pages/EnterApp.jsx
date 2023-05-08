@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { Box, Text } from "@chakra-ui/react";
 import LogOut from "../Elements/LogOut";
+import Stocks from "../components2/Stocks";
 import FAQ from "../components/FAQ";
 import Footer from "../components/Footer";
 import LogSign from "../components2/LogSign";
@@ -42,7 +43,7 @@ function EnterApp() {
       ) : (
         <Box>
           <LogOut />
-          <Text>This is PortFolio</Text>
+          <Stocks />
         </Box>
       )}
 

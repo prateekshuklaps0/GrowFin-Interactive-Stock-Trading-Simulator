@@ -38,13 +38,22 @@ function SignUp({ URL, setShowSignUp }) {
     setError((prev) => false);
 
     axios({
-      url: URL,
+      url: `${URL}/users`,
       method: "post",
       data: {
         firstName: first,
         lastName: last,
         email: email,
         mobile: mobile,
+        accType: "Individual",
+        balance: 0,
+        funds: 0,
+        stocks: 0,
+        bonds: 0,
+        mutualFunds: 0,
+        deposits: 0,
+        withdraws: 0,
+        stocksBookMark: [],
       },
     })
       .then((res) => {
@@ -81,7 +90,7 @@ function SignUp({ URL, setShowSignUp }) {
     setError((prev) => false);
 
     axios({
-      url: URL,
+      url: `${URL}/users`,
       method: "get",
     })
       .then((res) => {
@@ -91,6 +100,7 @@ function SignUp({ URL, setShowSignUp }) {
         if (foundUsers.length == 0) {
           setExist((prev) => false);
         } else {
+          setLoading((prev) => false);
           toast({
             title: `This Mobile Number is Already Registered`,
             status: "warning",
