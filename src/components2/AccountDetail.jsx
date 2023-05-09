@@ -39,7 +39,8 @@ import {
   Button,
   ButtonGroup,
 } from "@chakra-ui/react";
-
+import StockTable from "./StockTable";
+import DepWithBtns from "../Elements/DepWithBtns";
 function init(obj) {
   return {
     firstName: obj.firstName,
@@ -73,7 +74,6 @@ const updater = (state, { type, payload }) => {
 };
 
 function AccountDetail({ userData, setUserData }) {
-  const toast = useToast();
   const [state, action] = useReducer(updater, init({ ...userData }));
   const {
     firstName,
@@ -106,17 +106,22 @@ function AccountDetail({ userData, setUserData }) {
     userFound,
     setUserFound,
   } = useContext(AuthContext);
+
+  const toast = useToast();
+  // Profile Edited States
+  const [activateEdit, setActivateEdit] = useState(false);
+  const [editedLoading, setEditedLoading] = useState(false);
   const [hoverId, setHoverId] = useState(0);
   const [bookMarkLoading, setBokmarkLoading] = useState(false);
   const [bmError, setbmError] = useState(false);
 
-  // Profile Edited States
-  const [activateEdit, setActivateEdit] = useState(false);
-  const [editedLoading, setEditedLoading] = useState(false);
-
   useEffect(() => {
     setActivateEdit((prev) => false);
   }, []);
+
+  const handleCancel = () => {
+    setActivateEdit((prev) => false);
+  };
 
   const handleDeleteClick = (item) => {
     var dataToBeSend = userFound.stocksBookMark.filter(
@@ -132,7 +137,6 @@ function AccountDetail({ userData, setUserData }) {
       },
     })
       .then((res) => {
-        console.log(res.data);
         action({ type: "ItemDeleted", payload: res.data.stocksBookMark });
         toast({
           title: `BookMark Deleted`,
@@ -157,17 +161,6 @@ function AccountDetail({ userData, setUserData }) {
         setBokmarkLoading((prev) => false);
         setbmError((prev) => true);
       });
-  };
-
-  const handleCancel = () => {
-    setActivateEdit((prev) => false);
-  };
-
-  const handleMouseEnter = (id) => {
-    setHoverId((prev) => id);
-  };
-  const handleMouseLeave = () => {
-    setHoverId((prev) => null);
   };
 
   return (
@@ -248,23 +241,16 @@ function AccountDetail({ userData, setUserData }) {
       {/* Account Statistics */}
 
       <Text css={css.StatisticHead}>Account Statistics</Text>
-      <Box css={css.DepositAndWithDrawCont}>
-        <Button css={css.DepositBtn}>
-          Deposit <AddIcon css={css.DepositIcon} />
-        </Button>
-        <Button css={css.WithDrawBtn}>
-          WithDraw <ExternalLinkIcon css={css.WithDrawIcon} />
-        </Button>
-      </Box>
+      <DepWithBtns />
 
       <Box css={css.BalanceAndFundCont}>
         <Box css={css.BalanceCont}>
           <Text css={css.BalanceText}>Available Balance : </Text>
-          <Text css={css.BalanceValue}>0 $</Text>
+          <Text css={css.BalanceValue}>{userFound.balance} $</Text>
         </Box>
         <Box css={css.BalanceCont}>
           <Text css={css.BalanceText}>Available Funds : </Text>
-          <Text css={css.BalanceValue}>0 $</Text>
+          <Text css={css.BalanceValue}>{userFound.funds} $</Text>
         </Box>
       </Box>
 
@@ -291,95 +277,20 @@ function AccountDetail({ userData, setUserData }) {
         </Text>
       </Box>
 
-      {/* FAFF00 */}
-      {/* stocksBookMark */}
-      <Box css={css.BookMarksOuterCont}>
-        <Text css={css.BookMarkText}>
-          BooksMarks <BsBookmark css={css.BookMarkTextIcon} />
-        </Text>
+      {stocksBookMark.length > 0 && (
+        <Box css={css.BookMarksOuterCont}>
+          <Text css={css.BookMarkText}>
+            BooksMarks <BsBookmark css={css.BookMarkTextIcon} />
+          </Text>
 
-        <TableContainer css={css.TableContainer}>
-          <Table css={css.TableAtribute}>
-            <Thead css={css.TableH}>
-              <Tr css={css.TableHeadRow}>
-                <Th css={css.TableTH}>Holdings</Th>
-                <Th css={css.TableTH}>Price</Th>
-                <Th css={css.TableTH} isNumeric>
-                  Change % 1D
-                </Th>
-                <Th css={css.TableTH} isNumeric>
-                  Change Price 1D
-                </Th>
-                <Th css={css.TableTH}>Volume</Th>
-              </Tr>
-            </Thead>
-
-            {/* FAFF00 */}
-            <Tbody css={css.TableBody}>
-              {stocksBookMark?.map((item, ind) => (
-                <Tr
-                  css={css.BodyRow}
-                  onMouseEnter={(e) => handleMouseEnter(item.id)}
-                  onMouseLeave={handleMouseLeave}
-                  key={item.id}
-                >
-                  <Td css={css.BodyAvatarCont}>
-                    {hoverId == item.id ? (
-                      <Avatar
-                        css={css.DeleteAvatar}
-                        icon={
-                          <DeleteIcon
-                            css={css.DeleteIcon}
-                            onClick={(e) => handleDeleteClick(item)}
-                          />
-                        }
-                      />
-                    ) : (
-                      <Avatar css={css.NameAvatar} name={item.name} />
-                    )}
-
-                    <Badge css={css.SymbolText}>{item.symbol}</Badge>
-                    <Text css={css.CompNameCont}>{item.name}</Text>
-                  </Td>
-                  <Td>
-                    <Text css={css.PriceText}>{item.price} $</Text>
-                  </Td>
-                  <Td>
-                    <Text
-                      css={
-                        item.changedPercent < 0
-                          ? css.lowText
-                          : item.changedPercent > 0
-                          ? css.HighText
-                          : css.PriceText
-                      }
-                    >
-                      {item.changedPercent}%
-                    </Text>
-                  </Td>
-                  <Td>
-                    <Text
-                      css={
-                        item.changedPercent < 0
-                          ? css.lowText
-                          : item.changedPercent > 0
-                          ? css.HighText
-                          : css.PriceText
-                      }
-                    >
-                      {item.changedPrice} $
-                    </Text>
-                  </Td>
-                  <Td css={css.VolumeCont}>
-                    <Text css={css.PriceText}>{item.volume}k</Text>
-                    {hoverId == item.id && <PlusSquareIcon css={css.BuyIcon} />}
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </TableContainer>
-      </Box>
+          <StockTable
+            Data={stocksBookMark}
+            handleAvatarClick={handleDeleteClick}
+            IconsShow={DeleteIcon}
+            Loading={bookMarkLoading}
+          />
+        </Box>
+      )}
     </Box>
   );
 }
