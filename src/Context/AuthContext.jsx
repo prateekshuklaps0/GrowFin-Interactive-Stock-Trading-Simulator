@@ -4,7 +4,8 @@ export const AuthContext = createContext();
 
 function AuthContextProvider({ children }) {
   const URL = process.env.REACT_APP_DEVELOPMENT_URL;
-  // const URL = `http://localhost:${process.env.REACT_APP_JSON_SERVER_PORT}/users`;
+  //const URL = `https://grow-fin.onrender.com`;
+
   const [sliderVal, setSliderVal] = useState({ x: -50, y: 1.5 });
   const [menuSlide, setMenuSlide] = useState({ x: 10, y: 51 });
   const [highlight, setHighlight] = useState("Docs");
