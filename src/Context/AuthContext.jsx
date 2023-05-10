@@ -1,17 +1,34 @@
 import { createContext, useState, useEffect, useReducer } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 function AuthContextProvider({ children }) {
-  const URL = process.env.REACT_APP_DEVELOPMENT_URL;
-  //const URL = `https://grow-fin.onrender.com`;
+  // const URL = process.env.REACT_APP_DEVELOPMENT_URL;
+  const URL = `https://grow-fin.onrender.com`;
 
+  const [searchParam, setSearchParams] = useSearchParams();
   const [sliderVal, setSliderVal] = useState({ x: -50, y: 1.5 });
   const [menuSlide, setMenuSlide] = useState({ x: 10, y: 51 });
   const [highlight, setHighlight] = useState("Docs");
-  const [isAuth, setAuth] = useState(false);
+  const [isAuth, setAuth] = useState(true);
   const [userFound, setUserFound] = useState({});
   const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const storedAuth = localStorage.getItem("isAuth");
+    if (storedAuth == "true") {
+      setAuth((prev) => true);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isAuth", isAuth.toString());
+
+    if (!isAuth) {
+      setSearchParams("");
+    }
+  }, [isAuth, userFound]);
 
   return (
     <AuthContext.Provider

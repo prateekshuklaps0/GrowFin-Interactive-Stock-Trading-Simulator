@@ -1,5 +1,6 @@
 import * as css from "../CssStyles/StockTableCss";
 import { useState, useEffect, useRef, useReducer, useContext } from "react";
+import { Space, Spin } from "antd";
 import { AuthContext } from "../Context/AuthContext";
 import { BsBookmark } from "react-icons/bs";
 import axios from "axios";
@@ -86,7 +87,13 @@ const updater = (state, { type, payload }) => {
   }
 };
 
-function StockTable({ Data, handleAvatarClick, IconsShow, Loading }) {
+function StockTable({
+  Data,
+  handleAvatarClick,
+  IconsShow,
+  Loading,
+  GobalLoading,
+}) {
   const {
     URL,
     sliderVal,
@@ -197,7 +204,6 @@ function StockTable({ Data, handleAvatarClick, IconsShow, Loading }) {
     setModalData((prev) => stockData);
     onOpen();
   };
-
   const handleQuantityChange = (val) => {
     var inputValue = val;
     if (inputValue === "" || parseInt(inputValue) <= 1000) {
@@ -211,114 +217,117 @@ function StockTable({ Data, handleAvatarClick, IconsShow, Loading }) {
   return (
     <Box>
       <TableContainer css={css.TableContainer}>
-        <Table css={css.TableAtribute}>
-          <Thead css={css.TableH}>
-            <Tr css={css.TableHeadRow}>
-              <Th css={css.TableTH}>Holdings</Th>
-              <Th css={css.TableTH}>Price</Th>
-              <Th css={css.TableTH} isNumeric>
-                Change % 1D
-              </Th>
-              <Th css={css.TableTH} isNumeric>
-                Change Price 1D
-              </Th>
-              <Th css={css.TableTH}>Volume</Th>
-            </Tr>
-          </Thead>
-
-          {/* FAFF00 */}
-          <Tbody css={css.TableBody}>
-            {Data?.map((item, ind) => (
-              <Tr
-                css={css.BodyRow}
-                onMouseEnter={(e) => handleMouseEnter(item.id)}
-                onMouseLeave={handleMouseLeave}
-                key={item.id}
-              >
-                <Td css={css.BodyAvatarCont}>
-                  {Loading && hoverId == item.id ? (
-                    <Spinner size="xl" css={css.DeleteAvatar} />
-                  ) : hoverId == item.id && !Loading ? (
-                    <Avatar
-                      onClick={(e) => handleAvatarClick(item)}
-                      css={css.DeleteAvatar}
-                      icon={<IconsShow css={css.DeleteIcon} />}
-                    />
-                  ) : (
-                    <Avatar css={css.NameAvatar} name={item.name} />
-                  )}
-
-                  {/* {hoverId == item.id ? (
-                    <Avatar
-                      onClick={(e) => handleAvatarClick(item)}
-                      css={css.DeleteAvatar}
-                      icon={<IconsShow css={css.DeleteIcon} />}
-                    />
-                  ) : Loading && hoverId == item.id ? (
-                    <Spinner size="xl" css={css.DeleteAvatar} />
-                  ) : (
-                    <Avatar css={css.NameAvatar} name={item.name} />
-                  )} */}
-
-                  <Badge css={css.SymbolText}>{item.symbol}</Badge>
-                  <Text css={css.CompNameCont}>{item.name}</Text>
-                </Td>
-                <Td>
-                  <Text css={css.PriceText}>{item.price} $</Text>
-                </Td>
-                <Td>
-                  <Text
-                    css={
-                      item.changedPercent < 0
-                        ? css.lowText
-                        : item.changedPercent > 0
-                        ? css.HighText
-                        : css.PriceText
-                    }
-                  >
-                    <Stat>
-                      {item.changedPrice < 0 ? (
-                        <StatArrow type="decrease" />
-                      ) : item.changedPrice > 0 ? (
-                        <StatArrow type="increase" />
-                      ) : null}
-                    </Stat>
-                    {item.changedPercent}%
-                  </Text>
-                </Td>
-                <Td>
-                  <Text
-                    css={
-                      item.changedPrice < 0
-                        ? css.lowText
-                        : item.changedPrice > 0
-                        ? css.HighText
-                        : css.PriceText
-                    }
-                  >
-                    <Stat>
-                      {item.changedPrice < 0 ? (
-                        <StatArrow type="decrease" />
-                      ) : item.changedPrice > 0 ? (
-                        <StatArrow type="increase" />
-                      ) : null}
-                    </Stat>
-                    {item.changedPrice} $
-                  </Text>
-                </Td>
-                <Td css={css.VolumeCont}>
-                  <Text css={css.PriceText}>{item.volume}k</Text>
-                  {hoverId == item.id && (
-                    <PlusSquareIcon
-                      onClick={() => handleBuy(item)}
-                      css={css.BuyIcon}
-                    />
-                  )}
-                </Td>
+        {GobalLoading ? (
+          <Box css={css.LoadingBody}>
+            <Progress size="xs" isIndeterminate />
+            <Spinner
+              css={css.SpinnerBodyCss}
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="xl"
+            />
+          </Box>
+        ) : (
+          <Table css={css.TableAtribute}>
+            <Thead css={css.TableH}>
+              <Tr css={css.TableHeadRow}>
+                <Th css={css.TableTH}>Holdings</Th>
+                <Th css={css.TableTH}>Price</Th>
+                <Th css={css.TableTH} isNumeric>
+                  Change % 1D
+                </Th>
+                <Th css={css.TableTH} isNumeric>
+                  Change Price 1D
+                </Th>
+                <Th css={css.TableTH}>Volume</Th>
               </Tr>
-            ))}
-          </Tbody>
-        </Table>
+            </Thead>
+
+            {/* FAFF00 */}
+
+            <Tbody css={css.TableBody}>
+              {Data?.map((item, ind) => (
+                <Tr
+                  css={css.BodyRow}
+                  onMouseEnter={(e) => handleMouseEnter(item.id)}
+                  onMouseLeave={handleMouseLeave}
+                  key={item.id}
+                >
+                  <Td css={css.BodyAvatarCont}>
+                    {Loading && hoverId == item.id ? (
+                      <Spinner size="xl" css={css.DeleteAvatar} />
+                    ) : hoverId == item.id && !Loading ? (
+                      <Avatar
+                        onClick={(e) => handleAvatarClick(item)}
+                        css={css.DeleteAvatar}
+                        icon={<IconsShow css={css.DeleteIcon} />}
+                      />
+                    ) : (
+                      <Avatar css={css.NameAvatar} name={item.name} />
+                    )}
+
+                    <Badge css={css.SymbolText}>{item.symbol}</Badge>
+                    <Text css={css.CompNameCont}>{item.name}</Text>
+                  </Td>
+                  <Td>
+                    <Text css={css.PriceText}>{item.price} $</Text>
+                  </Td>
+                  <Td>
+                    <Text
+                      css={
+                        item.changedPercent < 0
+                          ? css.lowText
+                          : item.changedPercent > 0
+                          ? css.HighText
+                          : css.PriceText
+                      }
+                    >
+                      <Stat>
+                        {item.changedPrice < 0 ? (
+                          <StatArrow type="decrease" />
+                        ) : item.changedPrice > 0 ? (
+                          <StatArrow type="increase" />
+                        ) : null}
+                      </Stat>
+                      {item.changedPercent}%
+                    </Text>
+                  </Td>
+                  <Td>
+                    <Text
+                      css={
+                        item.changedPrice < 0
+                          ? css.lowText
+                          : item.changedPrice > 0
+                          ? css.HighText
+                          : css.PriceText
+                      }
+                    >
+                      <Stat>
+                        {item.changedPrice < 0 ? (
+                          <StatArrow type="decrease" />
+                        ) : item.changedPrice > 0 ? (
+                          <StatArrow type="increase" />
+                        ) : null}
+                      </Stat>
+                      {item.changedPrice} $
+                    </Text>
+                  </Td>
+                  <Td css={css.VolumeCont}>
+                    <Text css={css.PriceText}>{item.volume}k</Text>
+                    {hoverId == item.id && (
+                      <PlusSquareIcon
+                        onClick={() => handleBuy(item)}
+                        css={css.BuyIcon}
+                      />
+                    )}
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        )}
       </TableContainer>
 
       <Modal isCentered isOpen={isOpen} onClose={onClose}>

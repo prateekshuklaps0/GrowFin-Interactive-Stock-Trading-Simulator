@@ -73,6 +73,8 @@ function LogOut() {
   const { isAuth, setAuth, userName, setUserName, userFound, setUserFound } =
     useContext(AuthContext);
 
+  useEffect(() => {}, []);
+
   const handleLogOut = () => {
     toast({
       title: `Logged Out`,
@@ -80,6 +82,7 @@ function LogOut() {
       isClosable: false,
       position: "top",
     });
+
     setAuth((prev) => false);
   };
 
