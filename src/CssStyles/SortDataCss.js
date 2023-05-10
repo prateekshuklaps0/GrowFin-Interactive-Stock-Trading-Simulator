@@ -13,6 +13,9 @@ export const ActiveOuterBox = css`
   }
 
   @media (max-width: 480px) {
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
   }
 `;
 export const TriggerBtn = css`
@@ -33,6 +36,8 @@ export const TriggerBtn = css`
   }
 
   @media (max-width: 480px) {
+    border-radius: 5px;
+    height: 35px;
   }
 `;
 export const TriggerBtnText = css`
@@ -55,6 +60,8 @@ export const TriggerBtnNormalText = css`
   }
 
   @media (max-width: 480px) {
+    margin: 2.5px 5px 2.5px 5px;
+    font-size: 14px;
   }
 `;
 export const SortHeading = css`
@@ -133,6 +140,7 @@ export const TabCont = css`
   }
 
   @media (max-width: 480px) {
+    margin-left: 0px;
   }
 `;
 export const ActiveTabBtn = css`
@@ -153,6 +161,8 @@ export const ActiveTabBtn = css`
   }
 
   @media (max-width: 480px) {
+    font-size: 16px;
+    height: 30px;
   }
 `;
 export const InActiveTabBtn = css`
@@ -161,7 +171,6 @@ export const InActiveTabBtn = css`
   font-weight: 500;
   cursor: pointer;
   font-size: 18px;
-  //color: red;
 
   :hover {
   }
@@ -170,5 +179,7 @@ export const InActiveTabBtn = css`
   }
 
   @media (max-width: 480px) {
+    font-size: 16px;
+    height: 30px;
   }
 `;

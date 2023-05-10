@@ -243,11 +243,24 @@ export const BuyValBox = css`
   padding-right: 10px;
 `;
 
+// #FAFF00; - yellow
+// #ffffff; - white
+// 00ff0a - green - #00FF0A;
 export const LoadingBody = css`
   width: 100%;
+  background: rgba(39, 142, 73, 0.25);
+  border: 1px solid #00a407;
+  border-radius: 18px;
+  margin-top: 20px;
+  overflow: hidden;
 
   text-align: center;
 `;
 export const SpinnerBodyCss = css`
+  width: 70px;
+  height: 70px;
   margin: auto;
+  color: #00ff0a;
+  margin-top: 100px;
+  margin-bottom: 80px;
 `;
