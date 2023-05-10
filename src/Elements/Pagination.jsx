@@ -1,59 +1,68 @@
-import React from "react";
-import { css } from "@emotion/react";
-import { Box, Button, Text, ButtonGroup } from "@chakra-ui/react";
+import React, { useState } from "react";
+import * as css from "../CssStyles/PaginationCss";
+import { Box, Button, Text, Input, ButtonGroup } from "@chakra-ui/react";
+import {
+  EditIcon,
+  ExternalLinkIcon,
+  PlusSquareIcon,
+  AddIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  DeleteIcon,
+} from "@chakra-ui/icons";
 
-const OuterBox = css`
-  color: white;
-  background: #000000;
-  border: 1px solid #00ff0a;
-  border-radius: 24px;
-  text-align: center;
-  margin: auto;
+function PaginationComp({ totalPage, currentPage, setPage }) {
+  const [gotoVal, setGotoVal] = useState("");
 
-  @media (max-width: 800px) {
-  }
+  const GotoChange = (val) => {
+    if (val <= totalPage) {
+      setGotoVal((prev) => val);
+    }
+  };
 
-  @media (max-width: 480px) {
-  }
-`;
-const NextPrevBtn = css`
-  color: white;
-  background: #000000;
-  border: 1px solid #00ff0a;
-  border-radius: 24px;
-  text-align: center;
-  margin: auto;
-
-  @media (max-width: 800px) {
-  }
-
-  @media (max-width: 480px) {
-  }
-`;
-
-function PaginationComp({ currentPage, setPage }) {
-  const totalPages = 112;
+  const handleGotoClick = () => {
+    setPage((prev) => Number(gotoVal));
+    setGotoVal((prev) => "");
+  };
 
   return (
-    <Box css={OuterBox}>
-      <Box>
+    <Box css={css.OuterBox}>
+      <Box css={css.PagesCont}>
         <Button
+          css={css.NextPrevBtn}
           isDisabled={currentPage <= 1}
           onClick={() => setPage((prev) => prev - 1)}
         >
-          Prev
+          <ArrowLeftIcon />
         </Button>
-        <Text>{currentPage}</Text>
-        <Text>of</Text>
-        <Text>{totalPages}</Text>
+        <Box css={css.PageDisplayCont}>
+          <Text style={{ color: "#FAFF00" }}>{currentPage}</Text>
+          <Text>of</Text>
+          <Text>{totalPage}</Text>
+        </Box>
         <Button
-          isDisabled={currentPage >= totalPages}
+          css={css.NextPrevBtn}
+          isDisabled={currentPage >= totalPage}
           onClick={() => setPage((prev) => prev + 1)}
         >
-          Next
+          <ArrowRightIcon />
         </Button>
       </Box>
-      <Box></Box>
+
+      <Box css={css.GoToCont}>
+        {gotoVal && (
+          <Button css={css.GoToBtn} onClick={handleGotoClick}>
+            Go To
+          </Button>
+        )}
+        <Input
+          css={css.GoToInput}
+          value={gotoVal}
+          type="number"
+          onChange={(e) => GotoChange(e.target.value)}
+          placeholder="Go To Page"
+        />
+      </Box>
     </Box>
   );
 }

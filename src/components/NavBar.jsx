@@ -189,6 +189,7 @@ function Menu({
 
   const handleLogout = () => {
     setAuth((prev) => false);
+    localStorage.removeItem("isAuth");
     setUserName((prev) => "");
     setUserFound((prev) => {
       return {};

@@ -1,5 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import axios from "axios";
 import { Box } from "@chakra-ui/react";
 import LogOut from "../Elements/LogOut";
 import Middle from "../components/Middle";
@@ -33,6 +34,11 @@ function FaqPage() {
     });
 
     setHighlight((prev) => "FAQ");
+
+    axios({
+      url: `${URL}/users`,
+      method: "get",
+    });
 
     window.document.title = "Grow Fin | FAQ";
   }, []);

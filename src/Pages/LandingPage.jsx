@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { Box } from "@chakra-ui/react";
+import axios from "axios";
 import LogOut from "../Elements/LogOut";
 import NavBar from "../components/NavBar";
 import Header from "../components/Header";
@@ -48,6 +49,11 @@ function LandingPage() {
     });
 
     setHighlight((prev) => "Docs");
+
+    axios({
+      url: `${URL}/users`,
+      method: "get",
+    });
 
     document.title = `Prateek Shukla | Grow Fin`;
   }, []);

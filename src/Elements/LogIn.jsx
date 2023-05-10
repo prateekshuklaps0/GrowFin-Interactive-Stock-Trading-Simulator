@@ -155,11 +155,6 @@ function LogIn({ userName, setUserName, URL, setAuth, setUserFound }) {
   const [generatedOTP, setGeneratedOTP] = useState(0);
 
   useEffect(() => {
-    setUserName((prev) => "");
-    setAuth((prev) => false);
-    setUserFound((prev) => {
-      return {};
-    });
     action({ type: "MountPhaseAction" });
   }, []);
 
@@ -248,6 +243,7 @@ function LogIn({ userName, setUserName, URL, setAuth, setUserFound }) {
         isClosable: false,
       });
       setAuth((prev) => true);
+
       action({ type: "OPTMatched" });
     } else {
       toast({

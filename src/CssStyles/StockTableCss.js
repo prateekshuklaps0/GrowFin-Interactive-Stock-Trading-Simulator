@@ -2,6 +2,8 @@ import { css } from "@emotion/react";
 // #FAFF00; - yellow
 // #ffffff; - white
 
+// Table Css
+
 export const TableContainer = css`
   background: rgba(39, 142, 73, 0.25);
   border: 1px solid #00a407;
@@ -239,4 +241,13 @@ export const BuyValBox = css`
   margin-right: 20px;
   padding-left: 10px;
   padding-right: 10px;
+`;
+
+export const LoadingBody = css`
+  width: 100%;
+
+  text-align: center;
+`;
+export const SpinnerBodyCss = css`
+  margin: auto;
 `;
