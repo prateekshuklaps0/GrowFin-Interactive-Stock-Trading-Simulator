@@ -216,20 +216,25 @@ function StockTable({
 
   return (
     <Box>
-      <TableContainer css={css.TableContainer}>
-        {GobalLoading ? (
-          <Box css={css.LoadingBody}>
-            <Progress size="xs" isIndeterminate />
-            <Spinner
-              css={css.SpinnerBodyCss}
-              thickness="4px"
-              speed="0.65s"
-              emptyColor="gray.200"
-              color="blue.500"
-              size="xl"
-            />
-          </Box>
-        ) : (
+      {GobalLoading ? (
+        <Box css={css.LoadingBody}>
+          <Progress
+            size="xs"
+            height="10px"
+            colorScheme="yellow"
+            isIndeterminate
+          />
+          <Spinner
+            css={css.SpinnerBodyCss}
+            thickness="6px"
+            speed="0.65s"
+            // emptyColor="#FAFF00"
+            //color="blue.500"
+            size="xl"
+          />
+        </Box>
+      ) : (
+        <TableContainer css={css.TableContainer}>
           <Table css={css.TableAtribute}>
             <Thead css={css.TableH}>
               <Tr css={css.TableHeadRow}>
@@ -244,9 +249,6 @@ function StockTable({
                 <Th css={css.TableTH}>Volume</Th>
               </Tr>
             </Thead>
-
-            {/* FAFF00 */}
-
             <Tbody css={css.TableBody}>
               {Data?.map((item, ind) => (
                 <Tr
@@ -327,8 +329,8 @@ function StockTable({
               ))}
             </Tbody>
           </Table>
-        )}
-      </TableContainer>
+        </TableContainer>
+      )}
 
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
         <ModalOverlay

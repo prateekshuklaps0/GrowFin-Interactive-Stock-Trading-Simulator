@@ -110,10 +110,10 @@ function DataPage() {
   const [bookMarkLoading, setBokmarkLoading] = useState(false);
   const [bmError, setbmError] = useState(false);
   const [page, setPage] = useState(() =>
-    fixLimitParams(searchParams.get("page"))
+    fixParams(searchParams.get("page") || 1)
   );
   const [limit, setLimit] = useState(() =>
-    fixLimitParams(searchParams.get("limit"))
+    fixLimitParams(searchParams.get("limit") || 15)
   );
   const [totalPage, setTotalPage] = useState(1);
 
@@ -261,6 +261,30 @@ function DataPage() {
           setValueToBeSearched={setValueToBeSearched}
           searchInp={searchInp}
           setSearchInp={setSearchInp}
+        />
+      </Box>
+
+      <Box css={css.FilterAndSortContB}>
+        <SortData
+          sortVal={sortVal}
+          orderVal={orderVal}
+          setSortVal={setSortVal}
+          setOrderVal={setOrderVal}
+        />
+
+        <SearchComp
+          handleSearch={handleSearch}
+          setValueToBeSearched={setValueToBeSearched}
+          searchInp={searchInp}
+          setSearchInp={setSearchInp}
+        />
+      </Box>
+
+      <Box css={css.FilterAndSortContC}>
+        <PaginationComp
+          totalPage={totalPage}
+          currentPage={page}
+          setPage={setPage}
         />
       </Box>
 

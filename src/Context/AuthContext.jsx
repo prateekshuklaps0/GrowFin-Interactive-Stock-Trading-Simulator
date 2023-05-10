@@ -11,7 +11,7 @@ function AuthContextProvider({ children }) {
   const [sliderVal, setSliderVal] = useState({ x: -50, y: 1.5 });
   const [menuSlide, setMenuSlide] = useState({ x: 10, y: 51 });
   const [highlight, setHighlight] = useState("Docs");
-  const [isAuth, setAuth] = useState(true);
+  const [isAuth, setAuth] = useState(false);
   const [userFound, setUserFound] = useState({});
   const [userName, setUserName] = useState("");
 

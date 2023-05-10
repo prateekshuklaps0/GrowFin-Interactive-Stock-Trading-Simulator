@@ -11,6 +11,7 @@ import {
   Text,
   Link,
   Drawer,
+  useToast,
   Button,
   DrawerBody,
   Center,
@@ -132,6 +133,7 @@ function Menu({
   setMenuSlide,
 }) {
   const DSize = ["xs", "sm", "md", "lg", "xl", "full"];
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const Navi = useNavigate();
   const [activeLink, setActiveLink] = useState(0);
@@ -190,6 +192,11 @@ function Menu({
   const handleLogout = () => {
     setAuth((prev) => false);
     localStorage.removeItem("isAuth");
+    toast({
+      title: `Logged Out.`,
+      status: "success",
+      isClosable: true,
+    });
     setUserName((prev) => "");
     setUserFound((prev) => {
       return {};

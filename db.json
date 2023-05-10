@@ -202,6 +202,74 @@
         }
       ],
       "id": 3
+    },
+    {
+      "firstName": "Prateek",
+      "lastName": "Shukla",
+      "email": "p@s.com",
+      "mobile": "999821422222",
+      "accType": "Individual",
+      "balance": 0,
+      "funds": 0,
+      "stocks": 0,
+      "bonds": 0,
+      "mutualFunds": 0,
+      "deposits": 0,
+      "withdraws": 0,
+      "stocksBookMark": [],
+      "id": 4
+    },
+    {
+      "firstName": "Prateek",
+      "lastName": "Shukla",
+      "email": "p@g.com",
+      "mobile": "9990821422",
+      "accType": "Individual",
+      "balance": 0,
+      "funds": 0,
+      "stocks": 0,
+      "bonds": 0,
+      "mutualFunds": 0,
+      "deposits": 0,
+      "withdraws": 0,
+      "stocksBookMark": [],
+      "id": 5
+    },
+    {
+      "firstName": "Prateek",
+      "lastName": "Shukla",
+      "email": "p@t.com",
+      "mobile": "9911986060",
+      "accType": "Individual",
+      "balance": "68.00",
+      "funds": "4932.00",
+      "stocks": [
+        {
+          "id": 436,
+          "name": "Edserv Softsystems Ltd.",
+          "symbol": "EDSERV",
+          "price": 13.6,
+          "changedPrice": -3.76,
+          "changedPercent": -127.65,
+          "volume": 11
+        }
+      ],
+      "bonds": 0,
+      "mutualFunds": 0,
+      "deposits": 0,
+      "withdraws": 0,
+      "stocksBookMark": [
+        {
+          "id": 917,
+          "name": "Kwality Ltd.",
+          "symbol": "KWALITY",
+          "price": 0.74,
+          "changedPrice": 7.77,
+          "changedPercent": 950,
+          "volume": 1
+        }
+      ],
+      "id": 6
     }
   ],
   "stocks": [

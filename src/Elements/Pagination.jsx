@@ -33,7 +33,7 @@ function PaginationComp({ totalPage, currentPage, setPage }) {
           isDisabled={currentPage <= 1}
           onClick={() => setPage((prev) => prev - 1)}
         >
-          <ArrowLeftIcon />
+          <ArrowLeftIcon css={css.ArrowIconsCss} />
         </Button>
         <Box css={css.PageDisplayCont}>
           <Text style={{ color: "#FAFF00" }}>{currentPage}</Text>
@@ -45,7 +45,7 @@ function PaginationComp({ totalPage, currentPage, setPage }) {
           isDisabled={currentPage >= totalPage}
           onClick={() => setPage((prev) => prev + 1)}
         >
-          <ArrowRightIcon />
+          <ArrowRightIcon css={css.ArrowIconsCss} />
         </Button>
       </Box>
 
@@ -56,7 +56,7 @@ function PaginationComp({ totalPage, currentPage, setPage }) {
           </Button>
         )}
         <Input
-          css={css.GoToInput}
+          css={gotoVal == "" ? css.GoToInputEmpty : css.GoToInput}
           value={gotoVal}
           type="number"
           onChange={(e) => GotoChange(e.target.value)}

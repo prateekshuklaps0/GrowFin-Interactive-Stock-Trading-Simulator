@@ -21,6 +21,7 @@ import {
   Image,
   Highlight,
   InputGroup,
+  InputRightElement,
   InputLeftAddon,
   useToast,
   Text,
@@ -42,15 +43,79 @@ import {
 
 const OuterBox = css`
   color: white;
-  background: #000000;
-  border: 1px solid #00ff0a;
-  border-radius: 24px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   @media (max-width: 800px) {
   }
 
   @media (max-width: 480px) {
+  }
+`;
+const InpCss = css`
+  color: white;
+  background: #000000;
+  border: 1px solid #00ff0a;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  text-align: center;
+  height: 39px;
+
+  &:focus {
+    background: #000000;
+    border: 1px solid #faff00;
+  }
+
+  @media (max-width: 800px) {
+  }
+
+  @media (max-width: 480px) {
+    height: 32px;
+    font-size: 16px;
+    display: flex;
+    align_items: center;
+  }
+`;
+const searchBtnCss = css`
+  color: white;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background: #000000;
+  border: 1px solid #00ff0a;
+  font-family: Inter;
+  height: 39px;
+
+  text-align: center;
+
+  :hover {
+    background: #000000;
+    border: 1px solid #faff00;
+  }
+  @media (max-width: 800px) {
+  }
+
+  @media (max-width: 480px) {
+    height: 32px;
+  }
+`;
+const ClearBtnCss = css`
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  :hover {
+    color: #faff00;
+  }
+
+  @media (max-width: 800px) {
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
   }
 `;
 const NextPrevBtn = css`
@@ -86,22 +151,23 @@ function SearchComp({
 
   return (
     <Box css={OuterBox}>
-      <Input
-        onChange={(e) => handleChange(e.target.value)}
-        value={searchInp}
-        placeholder="Search"
-        type="text"
-      />
+      <InputGroup>
+        <Input
+          css={InpCss}
+          onChange={(e) => handleChange(e.target.value)}
+          value={searchInp}
+          placeholder="Search"
+          type="text"
+        />
+        <InputRightElement>
+          {searchInp && <CloseIcon css={ClearBtnCss} onClick={handleClear} />}
+        </InputRightElement>
+      </InputGroup>
       <IconButton
+        css={searchBtnCss}
         onClick={handleSearch}
         aria-label="Search database"
         icon={<SearchIcon />}
-      />
-      <IconButton
-        onClick={handleClear}
-        colorScheme="blue"
-        aria-label="Search database"
-        icon={<CloseIcon />}
       />
     </Box>
   );
