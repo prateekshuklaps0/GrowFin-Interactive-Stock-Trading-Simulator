@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 function AuthContextProvider({ children }) {
   // const URL = process.env.REACT_APP_DEVELOPMENT_URL;
-  const URL = `https://grow-fin.onrender.com`;
+  const URL = `https://grow-fin-18k6.onrender.com`;
 
   const [searchParam, setSearchParams] = useSearchParams();
   const [sliderVal, setSliderVal] = useState({ x: -50, y: 1.5 });
