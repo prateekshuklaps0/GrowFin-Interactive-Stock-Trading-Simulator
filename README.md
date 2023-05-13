@@ -38,4 +38,4 @@ React / Chakra UI / React Icons / Framer Motion / Ant Design / Chakra UI Icons /
 
 # Landing Page -
 
-![Landing Page](src\Images\ReadMeImgs\Landing 1.png)
+![Landing Page](./src/Images/ReadMeImgs/Landing%201.png)
