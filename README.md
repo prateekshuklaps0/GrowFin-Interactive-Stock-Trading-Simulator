@@ -36,8 +36,20 @@ React / Chakra UI / React Icons / Framer Motion / Ant Design / Chakra UI Icons /
 - Open Terminal and run - npm run install
 - Open another Terminal - npm run start (to start the local backend server)
 
-![Landing Page](./src/Images/ReadMeImgs/Landing%201.png)
+![Landing Page 1](./src/Images/ReadMeImgs/Landing%201.png)
 
-![Landing Page](./src/Images/ReadMeImgs/Landing%202.png)
+![Landing Page 2](./src/Images/ReadMeImgs/Landing%202.png)
 
-![LogIn Page](./src/Images/ReadMeImgs/LogIn.png)
+![LogIn](./src/Images/ReadMeImgs/LogIn.png)
+
+![SignUp](./src/Images/ReadMeImgs/SignUp.png)
+
+![FAQ Page](./src/Images/ReadMeImgs/FAQ.png)
+
+![Enter App Page](./src/Images/ReadMeImgs/ProductPage.png)
+
+![Buy Stocks Page](./src/Images/ReadMeImgs/BuyStocksModal.png)
+
+![Account Page](./src/Images/ReadMeImgs/Account.png)
+
+![BookMarks](./src/Images/ReadMeImgs/BookMarks.png)
