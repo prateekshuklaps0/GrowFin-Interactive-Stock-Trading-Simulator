@@ -1,13 +1,11 @@
 # Grow Fin
 
-# What is Grow Fin about?
-
 Grow Fin is online brokerage website which provide users to manage their financial portfolio such as Stocks, Bonds, Mutual Funds etc.
 This Project is build with React and Chakra UI library and JSON-server for backend network requests.
 
-Deployed Link - https://sick-dress-4939.netlify.app/
+Link : <a href="https://grow-fin.vercel.app">https://grow-fin.vercel.app</a>
 
-## Features:-
+## Features :
 
 - Users an Register or Create new Account.
 - Users can LogIn with Mobile and OTP.
@@ -20,21 +18,22 @@ Deployed Link - https://sick-dress-4939.netlify.app/
 - Can Redirect to any page.
 - Can Invest in Stocks and track the funds in account section.
 
-## Areas Under Development:-
+## Areas Under Development :
 
 - User Account Edit Functionality.
 - Add Product Results for Bonds and Mutual Funds.
 - Intigrate Process for Authentic Verification and Connectivity of Bank.
 - Track Record PAge for invested Stocks.
 
-## Tech Stacks Used:-
+## Tech Stacks Used :
 
 React / Chakra UI / React Icons / Framer Motion / Ant Design / Chakra UI Icons / BootsStrap / Material UI / Axios / React Router Dom
 
-## How to Run:-
+## Installation :
 
-- Open Terminal and run - npm run install
-- Open another Terminal - npm run start (to start the local backend server)
+- Install dependencies : `npm run install`
+- Start Front-End Server - `npm run start`
+- Start Back-End Server - `npm run server`
 
 ![Landing Page 1](./src/Images/ReadMeImgs/Landing%201.png)
 
