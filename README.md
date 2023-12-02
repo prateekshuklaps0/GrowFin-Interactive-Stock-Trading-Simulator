@@ -7,16 +7,11 @@ Link : <a href="https://grow-fin.vercel.app">https://grow-fin.vercel.app</a>
 
 ## Features :
 
-- Users an Register or Create new Account.
-- Users can LogIn with Mobile and OTP.
-- Deposit and Withdraw Funds.
-- Can visit Stocks page.
-- Can BookMark Stocks
-- Can Filter Stocks on the basis of Price, Price Changed in 1 Day, Price % Changed in 1 Day, Volume.
-- Can Sort Stocks from Low to High and High to Low.
-- Can search among 2230 Stock Lists.
-- Can Redirect to any page.
-- Can Invest in Stocks and track the funds in account section.
+- Deposit and withdraw funds.
+- Browse, track, and bookmark stocks from 2230 listed companies.
+- Filter and sort stocks based on price, volume, and price/percentage change in 1 day.
+- Users can track fund investments.
+- User sign up and login.
 
 ## Areas Under Development :
 
